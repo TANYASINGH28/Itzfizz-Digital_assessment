@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&display=swap');
+
+/* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.navbar li:hover {
+    opacity: 0.7;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Hero Text */
+.hero-text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    width: 100%;
+}
+
+.hero-text h1 {
+    font-size: 7vw;
+    line-height: 1.2;
+    font-weight: 1000 !important;
+    text-transform: uppercase;
+    transform: scaleX(1.8);
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    letter-spacing: 2px;
+    margin: 0;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero:hover .hero-text h1 {
+    color: white;
+    -webkit-text-stroke: 0px transparent;
+}
+
+/* Images Container */
+.images-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Individual Images */
+.hero-image {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+    opacity: 0.3;
+    transition: opacity 0.5s ease, z-index 0.5s ease;
+    will-change: transform;
+}
+
+/* Text label for images */
+.image-label {
+    position: absolute;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size:26px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+    mix-blend-mode: difference; /* Better visibility on any background */
+}
+
+/* Position labels differently for each image */
+#image1 .image-label {
+    left: 150px;
+    top: 80%;
+    transform: translateY(-50%) translateX(10px);
+}
+
+#image2 .image-label {
+    right: 150px;
+    bottom: 20%;
+    transform: translateY(50%) translateX(-10px);
+}
+
+#image3 .image-label {
+    left: 150px;
+    bottom: 20%;
+    transform: translateY(50%) translateX(10px);
+}
+
+#image4 .image-label {
+    right: 150px;
+    top: 80%;
+    transform: translateY(-50%) translateX(-10px);
+}
+
+/* Show label on hover */
+.hero-image:hover .image-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0); /* Adjust based on position */
+}
+
+/* Make part of label overlap the image */
+.hero-image:hover .image-label::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: white;
+}
+
+/* Position the connecting line differently for each label */
+#image1:hover .image-label::before {
+    left: -30px;
+    top: 50%;
+}
+
+#image2:hover .image-label::before {
+    right: -30px;
+    top: 50%;
+}
+
+#image3:hover .image-label::before {
+    left: -30px;
+    top: 50%;
+}
+
+#image4:hover .image-label::before {
+    right: -30px;
+    top: 50%;
+}
+
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Image Positions */
+#image1 {
+    top: 15%;
+    right: 20%;
+    transform: translateY(-10px);
+}
+
+#image2 {
+    bottom: 25%;
+    left: 20%;
+    transform: translateX(-10px);
+}
+
+#image3 {
+    bottom: 20%;
+    right: 20%;
+    transform: translate(10px, -10px);
+}
+
+#image4 {
+    top: 10%;
+    left: 20%;
+    transform: translate(-10px, 10px);
+}
+
+/* Hover Effects */
+.hero-image:hover {
+    opacity: 1;
+    z-index: 10;
+}
+
+.hero-image:hover ~ .hero-text {
+    transform: translate(-50%, calc(-50% + 10px));
+}
+
+.hero-image:hover ~ .hero-text h1 {
+    color: transparent;
+    -webkit-text-stroke: 1  px white;
+    opacity: 0.9;
+}
+
+.hero-image:hover img {
+    transform: scale(1.05);
+}
+
+.hero-image:hover ~ .hero-image {
+    opacity: 0;
+}
+
+/* Cursor Following Effect */
+.hero-image {
+    transition: transform 0.3s ease-out;
+}
+
+/* Responsive Considerations */
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 8vw;
+        transform: scaleX(1.5);
+    }
+    
+    .hero-image {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 10vw;
+        transform: scaleX(1.3);
+        -webkit-text-stroke: 1px white;
+    }
+    
+    .hero-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .navbar ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
